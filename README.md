@@ -95,7 +95,7 @@ ________________________________________________________________________________
 
 🎯 Example Data
 <details> <summary><strong>Client Profile</strong></summary>
-json
+
 {
   "fullName": "John Client",
   "company": "Tech Corp",
@@ -108,7 +108,7 @@ json
   ]
 }
 </details> <details> <summary><strong>Consultant Profile</strong></summary>
-json
+
 {
   "fullName": "Alice Consultant",
   "skills": ["Node.js", "MongoDB", "API Design"],
@@ -117,7 +117,7 @@ json
   "availability": true
 }
 </details> <details> <summary><strong>Match Consultants</strong></summary>
-json
+
 {
   "skills": ["Node.js", "MongoDB"],
   "domain": "E-commerce",
