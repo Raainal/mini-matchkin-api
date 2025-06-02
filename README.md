@@ -6,6 +6,8 @@ A full-stack matching engine for clients and consultants, featuring OTP-based lo
 
 </div>
 ___________________________________________________________________________________________________________________________________________
+
+
 ✨ Features
 OTP-based email login (no password needed)
 
@@ -20,6 +22,8 @@ Aesthetic frontend for easy, interactive testing
 Postman collection included for API testing
 
 ___________________________________________________________________________________________________________________________________________
+
+
 🛠️ Tech Stack
 Layer	Tech
 Backend	Node.js, Express.js
@@ -28,6 +32,8 @@ Auth	OTP via email, JWT
 Frontend	HTML, CSS, JavaScript
 Deploy	Render (backend), Netlify (frontend)
 ___________________________________________________________________________________________________________________________________________
+
+
 🚀 Getting Started (Local Setup)
 1. Clone the Repository
 
@@ -58,6 +64,8 @@ Backend runs at http://localhost:5000
 Open index.html in your browser, or use the live demo.
 
 ___________________________________________________________________________________________________________________________________________
+
+
 🌐 API Endpoints
 Endpoint	Method	Description
 /api/auth/request-otp	POST	Request OTP for login/signup
@@ -66,6 +74,8 @@ Endpoint	Method	Description
 /api/profiles/consultant	POST	Create/update consultant profile
 /api/match	POST	Match top consultants for a project
 ___________________________________________________________________________________________________________________________________________
+
+
 🖥️ How to Use (Frontend)
 1. Request OTP:
 Enter your email, select your role, and click Request OTP.
@@ -80,6 +90,8 @@ Paste the relevant JSON (see below) and click Create/Update Profile.
 Paste your project requirements and click Find Match.
 
 ___________________________________________________________________________________________________________________________________________
+
+
 🎯 Example Data
 <details> <summary><strong>Client Profile</strong></summary>
 json
@@ -113,13 +125,17 @@ json
 </details>
 
 ___________________________________________________________________________________________________________________________________________
+
+
 📬 Postman Collection
 Find the exported Postman collection in the /postman or /docs folder.
 
 Import into Postman to test all endpoints easily.
 ___________________________________________________________________________________________________________________________________________
 
+
 👤 Author
+
 Name: Amal Nair
 
 Email: amalnair242@gmail.com
