@@ -1,0 +1,238 @@
+{
+	"info": {
+		"_postman_id": "537a71d7-4a6e-4cf1-a3c0-54e587c818ba",
+		"name": "Mini Matchkin API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "45536481",
+		"_collection_link": "https://amal-3088191.postman.co/workspace/Amal's-Workspace~6a8e9aea-2add-47f1-8541-8ded2e31d939/collection/45536481-537a71d7-4a6e-4cf1-a3c0-54e587c818ba?action=share&source=collection_link&creator=45536481"
+	},
+	"item": [
+		{
+			"name": "Request_OTP_client",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"amalnair242@gmail.com\",\r\n  \"role\": \"client\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/auth/request-otp",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"auth",
+						"request-otp"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Verify_OTP_client",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"amalnair242@gmail.com\",\r\n  \"otp\": \"921369\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/auth/verify-otp",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"auth",
+						"verify-otp"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create/Update Client Profile",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODNkZWU1Y2U5ZTNiMjdiOTEyNjMwNmYiLCJlbWFpbCI6ImFtYWxuYWlyMjQyQGdtYWlsLmNvbSIsInJvbGUiOiJjb25zdWx0YW50IiwiaWF0IjoxNzQ4OTAwMDI3LCJleHAiOjE3NDg5MDM2Mjd9.7BMtI6XnczwzC0tca7mn7jW4H0V4LsrPu9o_854Cn8k",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"fullName\": \"John Client\",\r\n  \"company\": \"Tech Corp\",\r\n  \"projectHistory\": [\r\n    {\r\n      \"title\": \"E-commerce Platform\",\r\n      \"description\": \"Built online marketplace\",\r\n      \"domain\": \"E-commerce\"\r\n    }\r\n  ]\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/profiles/client",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"profiles",
+						"client"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Request_OTP_consultant",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"amalnair242@gmail.com\",\r\n  \"role\": \"client\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/auth/request-otp",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"auth",
+						"request-otp"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Verify_OTP_consultant",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"amalnair242@gmail.com\",\r\n  \"otp\": \"921369\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/auth/verify-otp",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"auth",
+						"verify-otp"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create/Update Consultant Profile",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODNkYTM0YTgzNDI2NWU4NzZlYzFlZWEiLCJlbWFpbCI6ImNyYW5reWNoYW1waW9uNTNAZ21haWwuY29tIiwicm9sZSI6ImNsaWVudCIsImlhdCI6MTc0ODg5OTg4MywiZXhwIjoxNzQ4OTAzNDgzfQ.eGEKX_bc-ICOEJAeAlvg26sAsnKNbvaxFDhUl9QxNWE",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"fullName\": \"Amal Consultant\",\r\n  \"skills\": [\"Node.js\", \"MongoDB\", \"API Design\"],\r\n  \"domains\": [\"E-commerce\", \"Healthcare\"],\r\n  \"experience\": 5,\r\n  \"availability\": true\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/profiles/consultant",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"profiles",
+						"consultant"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Match Consultants",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODNkZWU1Y2U5ZTNiMjdiOTEyNjMwNmYiLCJlbWFpbCI6ImFtYWxuYWlyMjQyQGdtYWlsLmNvbSIsInJvbGUiOiJjb25zdWx0YW50IiwiaWF0IjoxNzQ4OTAwMDI3LCJleHAiOjE3NDg5MDM2Mjd9.7BMtI6XnczwzC0tca7mn7jW4H0V4LsrPu9o_854Cn8k",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"skills\": [\"Node.js\", \"MongoDB\"],\r\n  \"domain\": \"E-commerce\",\r\n  \"timeline\": \"3 months\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/match",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"match"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
