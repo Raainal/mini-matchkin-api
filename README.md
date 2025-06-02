@@ -94,36 +94,7 @@ ________________________________________________________________________________
 
 
 🎯 Example Data
-<details> <summary><strong>Client Profile</strong></summary>
-
-{
-  "fullName": "John Client",
-  "company": "Tech Corp",
-  "projectHistory": [
-    {
-      "title": "E-commerce Platform",
-      "description": "Built online marketplace",
-      "domain": "E-commerce"
-    }
-  ]
-}
-</details> <details> <summary><strong>Consultant Profile</strong></summary>
-
-{
-  "fullName": "Alice Consultant",
-  "skills": ["Node.js", "MongoDB", "API Design"],
-  "domains": ["E-commerce", "Healthcare"],
-  "experience": 5,
-  "availability": true
-}
-</details> <details> <summary><strong>Match Consultants</strong></summary>
-
-{
-  "skills": ["Node.js", "MongoDB"],
-  "domain": "E-commerce",
-  "timeline": "3 months"
-}
-</details>
+Open steps to run for Example data
 
 ___________________________________________________________________________________________________________________________________________
 
