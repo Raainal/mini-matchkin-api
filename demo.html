@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mini Matchkin Demo</title>
+</head>
+<body>
+  <h2>Mini Matchkin Demo</h2>
+
+  <h3>1. Request OTP</h3>
+  <input id="email" placeholder="Email">
+  <select id="role">
+    <option value="client">Client</option>
+    <option value="consultant">Consultant</option>
+  </select>
+  <button onclick="requestOTP()">Request OTP</button>
+  <div id="otp-request-result"></div>
+
+  <h3>2. Verify OTP</h3>
+  <input id="otp" placeholder="Enter OTP">
+  <button onclick="verifyOTP()">Verify OTP</button>
+  <div id="otp-verify-result"></div>
+  <div id="jwt-token" style="word-break: break-all;"></div>
+
+  <h3>3. Create Profile</h3>
+  <textarea id="profile-data" rows="5" cols="50" placeholder='{"fullName":"John","company":"Tech Corp"}'></textarea><br>
+  <button onclick="createProfile()">Create/Update Profile</button>
+  <div id="profile-result"></div>
+
+  <h3>4. Match Consultants</h3>
+  <textarea id="match-data" rows="3" cols="50" placeholder='{"skills":["Node.js"],"domain":"E-commerce","timeline":"3 months"}'></textarea><br>
+  <button onclick="matchConsultants()">Find Match</button>
+  <div id="match-result"></div>
+
+  <script>
+    let jwt = "";
+
+    function requestOTP() {
+      const email = document.getElementById('email').value;
+      const role = document.getElementById('role').value;
+      fetch('http://localhost:5000/api/auth/request-otp', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ email, role })
+      })
+      .then(r => r.json())
+      .then(data => document.getElementById('otp-request-result').innerText = JSON.stringify(data));
+    }
+
+    function verifyOTP() {
+      const email = document.getElementById('email').value;
+      const otp = document.getElementById('otp').value;
+      fetch('http://localhost:5000/api/auth/verify-otp', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ email, otp })
+      })
+      .then(r => r.json())
+      .then(data => {
+        document.getElementById('otp-verify-result').innerText = JSON.stringify(data);
+        if (data.token) {
+          jwt = data.token;
+          document.getElementById('jwt-token').innerText = "JWT: " + jwt;
+        }
+      });
+    }
+
+    function createProfile() {
+      const role = document.getElementById('role').value;
+      const profileData = document.getElementById('profile-data').value;
+      let url = role === 'client' ? 'http://localhost:5000/api/profiles/client' : 'http://localhost:5000/api/profiles/consultant';
+      fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + jwt
+        },
+        body: profileData
+      })
+      .then(r => r.json())
+      .then(data => document.getElementById('profile-result').innerText = JSON.stringify(data));
+    }
+
+    function matchConsultants() {
+      const matchData = document.getElementById('match-data').value;
+      fetch('http://localhost:5000/api/match', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + jwt
+        },
+        body: matchData
+      })
+      .then(r => r.json())
+      .then(data => document.getElementById('match-result').innerText = JSON.stringify(data));
+    }
+  </script>
+</body>
+</html>

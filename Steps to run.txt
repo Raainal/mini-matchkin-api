@@ -1,0 +1,41 @@
+
+For Client Profile
+Paste this in the "Create Profile" text area when the role is Client:
+
+
+{
+  "fullName": "John Client",
+  "company": "Tech Corp",
+  "projectHistory": [
+    {
+      "title": "E-commerce Platform",
+      "description": "Built online marketplace",
+      "domain": "E-commerce"
+    }
+  ]
+}
+
+Refresh page
+
+For Consultant Profile
+Paste this in the "Create Profile" text area when the role is Consultant:
+
+
+{
+  "fullName": "Alice Consultant",
+  "skills": ["Node.js", "MongoDB", "API Design"],
+  "domains": ["E-commerce", "Healthcare"],
+  "experience": 5,
+  "availability": true
+}
+
+
+
+Match Consultants" text area, paste:
+
+
+{
+  "skills": ["Node.js", "MongoDB"],
+  "domain": "E-commerce",
+  "timeline": "3 months"
+}

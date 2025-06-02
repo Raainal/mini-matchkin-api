@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mini Matchkin | Find Your Perfect Match</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    :root {
+      --main-bg: #f6f8fc;
+      --card-bg: #fff;
+      --accent: #5c7cfa;
+      --accent-dark: #4263eb;
+      --text: #222;
+      --muted: #888;
+      --radius: 18px;
+      --shadow: 0 4px 24px rgba(60,60,60,0.08);
+    }
+    body {
+      background: var(--main-bg);
+      font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+      margin: 0;
+      color: var(--text);
+    }
+    .container {
+      max-width: 700px;
+      margin: 40px auto;
+      padding: 24px;
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    h1 {
+      text-align: center;
+      color: var(--accent-dark);
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+    h2 {
+      color: var(--accent);
+      margin-top: 32px;
+      margin-bottom: 12px;
+      font-size: 1.2em;
+    }
+    label {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--muted);
+      font-size: 0.97em;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 10px 12px;
+      margin-bottom: 14px;
+      border: 1px solid #e0e4ea;
+      border-radius: var(--radius);
+      background: #f8fafc;
+      font-size: 1em;
+      transition: border-color 0.2s;
+    }
+    input:focus, textarea:focus, select:focus {
+      border-color: var(--accent);
+      outline: none;
+    }
+    button {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: var(--radius);
+      padding: 10px 24px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: background 0.2s, box-shadow 0.2s;
+      box-shadow: 0 2px 8px rgba(92,124,250,0.07);
+      margin-top: 8px;
+      margin-bottom: 18px;
+    }
+    button:hover {
+      background: var(--accent-dark);
+    }
+    .result, .token {
+      background: #f1f3f9;
+      border-radius: var(--radius);
+      padding: 10px 15px;
+      margin-bottom: 12px;
+      font-size: 1em;
+      color: #333;
+      word-break: break-all;
+      border-left: 4px solid var(--accent);
+      transition: background 0.2s;
+    }
+    .token {
+      border-left: 4px solid #82c91e;
+      background: #f8fff0;
+      color: #2b5c07;
+    }
+    .matches-list {
+      list-style: none;
+      padding: 0;
+    }
+    .match-card {
+      background: #e7f0fd;
+      border-radius: var(--radius);
+      margin-bottom: 14px;
+      padding: 12px 18px;
+      box-shadow: 0 2px 8px rgba(92,124,250,0.09);
+      border-left: 4px solid var(--accent);
+    }
+    .match-score {
+      float: right;
+      color: #4263eb;
+      font-weight: bold;
+    }
+    .success-msg {
+      color: #2b5c07;
+      font-weight: bold;
+      margin-bottom: 6px;
+    }
+    .error-msg {
+      color: #c92a2a;
+      font-weight: bold;
+      margin-bottom: 6px;
+    }
+    @media (max-width: 800px) {
+      .container { max-width: 98vw; padding: 12px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Mini Matchkin</h1>
+    <p style="text-align:center;color:#666;">Find your perfect consultant or client match! 🚀</p>
+
+    <h2>1. Request OTP</h2>
+    <label for="email">Email</label>
+    <input id="email" type="email" placeholder="you@example.com">
+    <label for="role">Role</label>
+    <select id="role">
+      <option value="client">Client</option>
+      <option value="consultant">Consultant</option>
+    </select>
+    <button onclick="requestOTP()">Request OTP</button>
+    <div id="otp-request-result" class="result"></div>
+
+    <h2>2. Verify OTP</h2>
+    <label for="otp">OTP</label>
+    <input id="otp" placeholder="Enter OTP from email">
+    <button onclick="verifyOTP()">Verify OTP</button>
+    <div id="otp-verify-result" class="result"></div>
+    <div id="jwt-token" class="token"></div>
+
+    <h2>3. Create Profile</h2>
+    <label for="profile-data">Profile Data (JSON)</label>
+    <textarea id="profile-data" rows="5" placeholder='{"fullName":"John Client","company":"Tech Corp"}'></textarea>
+    <button onclick="createProfile()">Create/Update Profile</button>
+    <div id="profile-result" class="result"></div>
+
+    <h2>4. Match Consultants</h2>
+    <label for="match-data">Project Data (JSON)</label>
+    <textarea id="match-data" rows="3" placeholder='{"skills":["Node.js"],"domain":"E-commerce","timeline":"3 months"}'></textarea>
+    <button onclick="matchConsultants()">Find Match</button>
+    <div id="match-result" class="result"></div>
+    <ul id="matches-list" class="matches-list"></ul>
+  </div>
+
+  <script>
+    const API_BASE = "http://localhost:5000";
+    let jwt = "";
+
+    function formatProfile(profile) {
+      if (!profile) return "No profile data.";
+      let html = `<div class="success-msg">Profile Saved!</div>`;
+      html += `<b>Name:</b> ${profile.fullName || ''}<br>`;
+      if (profile.company) html += `<b>Company:</b> ${profile.company}<br>`;
+      if (profile.skills) html += `<b>Skills:</b> ${profile.skills.join(", ")}<br>`;
+      if (profile.domains) html += `<b>Domains:</b> ${profile.domains.join(", ")}<br>`;
+      if (profile.experience) html += `<b>Experience:</b> ${profile.experience} years<br>`;
+      if (profile.availability !== undefined) html += `<b>Available:</b> ${profile.availability ? "Yes" : "No"}<br>`;
+      if (profile.projectHistory) {
+        html += `<b>Project History:</b><ul>`;
+        profile.projectHistory.forEach(p => {
+          html += `<li><b>${p.title}</b>: ${p.description} [${p.domain}]</li>`;
+        });
+        html += `</ul>`;
+      }
+      return html;
+    }
+
+    function formatError(msg) {
+      return `<div class="error-msg">${msg}</div>`;
+    }
+
+    function requestOTP() {
+      const email = document.getElementById('email').value.trim();
+      const role = document.getElementById('role').value;
+      fetch(`${API_BASE}/api/auth/request-otp`, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ email, role })
+      })
+      .then(r => r.json())
+      .then(data => {
+        if (data.success) {
+          document.getElementById('otp-request-result').innerHTML = `<div class="success-msg">${data.message}</div>`;
+        } else {
+          document.getElementById('otp-request-result').innerHTML = formatError(data.message || "Error requesting OTP.");
+        }
+      });
+    }
+
+    function verifyOTP() {
+      const email = document.getElementById('email').value.trim();
+      const otp = document.getElementById('otp').value.trim();
+      fetch(`${API_BASE}/api/auth/verify-otp`, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ email, otp })
+      })
+      .then(r => r.json())
+      .then(data => {
+        if (data.success) {
+          document.getElementById('otp-verify-result').innerHTML = `<div class="success-msg">${data.message}</div>`;
+          if (data.token) {
+            jwt = data.token;
+            document.getElementById('jwt-token').innerHTML = "<b>JWT:</b> <span style='font-size:0.9em;word-break:break-all;'>" + jwt + "</span>";
+          }
+        } else {
+          document.getElementById('otp-verify-result').innerHTML = formatError(data.message || "Error verifying OTP.");
+        }
+      });
+    }
+
+    function createProfile() {
+      const role = document.getElementById('role').value;
+      const profileData = document.getElementById('profile-data').value;
+      let url = role === 'client' ? `${API_BASE}/api/profiles/client` : `${API_BASE}/api/profiles/consultant`;
+      fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + jwt
+        },
+        body: profileData
+      })
+      .then(r => r.json())
+      .then(data => {
+        if (data.success && data.profile) {
+          document.getElementById('profile-result').innerHTML = formatProfile(data.profile);
+        } else {
+          document.getElementById('profile-result').innerHTML = formatError(data.message || "Error saving profile.");
+        }
+      });
+    }
+
+    function matchConsultants() {
+      const matchData = document.getElementById('match-data').value;
+      fetch(`${API_BASE}/api/match`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + jwt
+        },
+        body: matchData
+      })
+      .then(r => r.json())
+      .then(data => {
+        document.getElementById('match-result').innerText = "";
+        const matchesList = document.getElementById('matches-list');
+        matchesList.innerHTML = "";
+        if (data.matches && data.matches.length > 0) {
+          data.matches.forEach(match => {
+            let userEmail = match.user && match.user.email ? match.user.email : "N/A";
+            let html = `
+              <li class="match-card">
+                <div><b>Name:</b> ${match.fullName || "Consultant"}</div>
+                <div><b>Email:</b> ${userEmail}</div>
+                <div><b>Skills:</b> ${match.skills ? match.skills.join(", ") : ""}</div>
+                <div><b>Domains:</b> ${match.domains ? match.domains.join(", ") : ""}</div>
+                <div><b>Score:</b> <span class="match-score">${match.score}</span></div>
+                <div><b>Explanation:</b> ${match.explanation}</div>
+              </li>
+            `;
+            matchesList.innerHTML += html;
+          });
+        } else {
+          document.getElementById('match-result').innerHTML = "<b>No matches found.</b>";
+        }
+      });
+    }
+  </script>
+</body>
+</html>
