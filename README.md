@@ -5,8 +5,7 @@ A full-stack matching engine for clients and consultants, featuring OTP-based lo
 🌐 Live Frontend Demo  |  🟢 Live Backend API
 
 </div>
-___________________________________________________________________________________________________________________________________________
-
+_____________________________________________________________________________________________________________________________
 
 ✨ Features
 OTP-based email login (no password needed)
