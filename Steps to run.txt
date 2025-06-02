@@ -1,8 +1,45 @@
+Absolutely! Here is a **complete, beginner-friendly guide** for first-time users of your Mini Matchkin website, with clear steps and sample data to fill at every stage.
 
-For Client Profile
-Paste this in the "Create Profile" text area when the role is Client:
+---
 
+# **How to Use the Mini Matchkin Website**
 
+**Website:** [https://mini-matchkin-api.netlify.app/](https://mini-matchkin-api.netlify.app/)
+
+---
+
+## **Step 1: Request OTP (Login/Signup)**
+
+1. **Enter your email**  
+   Use any email address you have access to.
+
+2. **Select your role**  
+   - Choose **Client** if you want to post a project and find consultants.
+   - Choose **Consultant** if you want to offer your expertise.
+
+3. **Click "Request OTP"**  
+   An OTP (One Time Password) will be sent to your email.
+
+4. **Check your email** for the OTP code.
+
+---
+
+## **Step 2: Verify OTP**
+
+1. Enter the **same email** you used above.
+2. Enter the **OTP code** you received in your email.
+3. Click **"Verify OTP"**.
+4. You will see a success message and your login token will be set for the next steps.
+
+---
+
+## **Step 3: Create Your Profile**
+
+### **For Client Profile**
+- Make sure the role is set to **Client**.
+- In the **"Create Profile"** text area, paste:
+
+```json
 {
   "fullName": "John Client",
   "company": "Tech Corp",
@@ -14,13 +51,23 @@ Paste this in the "Create Profile" text area when the role is Client:
     }
   ]
 }
+```
 
-Refresh page
+- Click **"Create/Update Profile"**.
+- You will see your profile details displayed below.
 
-For Consultant Profile
-Paste this in the "Create Profile" text area when the role is Consultant:
+---
 
+**Refresh the Page**  
+If you want to log in as a different user (for example, to create both a client and a consultant), refresh the page and repeat steps 1–3 with a different email and role.
 
+---
+
+### **For Consultant Profile**
+- Make sure the role is set to **Consultant**.
+- In the **"Create Profile"** text area, paste:
+
+```json
 {
   "fullName": "Alice Consultant",
   "skills": ["Node.js", "MongoDB", "API Design"],
@@ -28,14 +75,89 @@ Paste this in the "Create Profile" text area when the role is Consultant:
   "experience": 5,
   "availability": true
 }
+```
 
+- Click **"Create/Update Profile"**.
+- You will see your consultant profile details displayed below.
 
+---
 
-Match Consultants" text area, paste:
+## **Step 4: Match Consultants (for Clients)**
 
+- Make sure you are logged in as a **Client**.
+- In the **"Match Consultants"** text area, paste:
 
+```json
 {
   "skills": ["Node.js", "MongoDB"],
   "domain": "E-commerce",
   "timeline": "3 months"
 }
+```
+
+- Click **"Find Match"**.
+- You will see a list of matching consultants, their scores, and explanations.
+
+---
+
+## **Extra Example Data**
+
+### **More Complex Client Profile**
+```json
+{
+  "fullName": "Priya Sharma",
+  "company": "HealthFirst",
+  "projectHistory": [
+    {
+      "title": "Patient Portal",
+      "description": "Developed a secure healthcare portal",
+      "domain": "Healthcare"
+    }
+  ]
+}
+```
+
+### **More Complex Consultant Profile**
+```json
+{
+  "fullName": "Raj Patel",
+  "skills": ["Python", "Django", "Machine Learning", "Data Analysis"],
+  "domains": ["Healthcare", "Finance"],
+  "experience": 7,
+  "availability": true
+}
+```
+
+### **Different Project for Matching**
+```json
+{
+  "skills": ["Python", "Machine Learning"],
+  "domain": "Healthcare",
+  "timeline": "6 months"
+}
+```
+
+---
+
+## **Tips & Notes**
+- Use a real email if you want to receive the OTP, or a test email if you’re just demoing.
+- You can create multiple users by refreshing the page and using new emails.
+- To see matching results, there must be at least one consultant profile in the system.
+- The matching explanation will tell you why a consultant was matched (skills/domains matched).
+
+---
+
+## **Quick Reference Table**
+
+| Step                | What to Do / Paste (Example)                                                                                                  |
+|---------------------|------------------------------------------------------------------------------------------------------------------------------|
+| Request OTP         | Enter email, select role (Client/Consultant), click Request OTP                                                              |
+| Verify OTP          | Enter same email, enter OTP from email, click Verify OTP                                                                     |
+| Create Client       | Paste client JSON (see above), click Create/Update Profile                                                                   |
+| Create Consultant   | Paste consultant JSON (see above), click Create/Update Profile                                                               |
+| Match Consultants   | Paste project JSON (see above), click Find Match                                                                             |
+| Switch User         | Refresh page, repeat steps with new email and role                                                                           |
+
+---
+
+**Enjoy using Mini Matchkin! If you have any questions, check these instructions or contact the project owner.**
