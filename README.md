@@ -38,14 +38,12 @@ ________________________________________________________________________________
 🚀 Getting Started (Local Setup)
 1. Clone the Repository
 
-bash
+
 git clone https://github.com/<your-username>/mini-matchkin-api.git
 
 cd mini-matchkin-api
 
 2. Install Dependencies
-
-bash
 
 npm install
 
@@ -64,8 +62,6 @@ EMAIL_USER=your_gmail@gmail.com
 EMAIL_PASS=your_gmail_app_password
 
 4. Start the Backend
-
-bash
 
 npm start
 
