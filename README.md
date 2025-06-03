@@ -40,24 +40,35 @@ ________________________________________________________________________________
 
 bash
 git clone https://github.com/<your-username>/mini-matchkin-api.git
+
 cd mini-matchkin-api
+
 2. Install Dependencies
 
 bash
+
 npm install
+
 3. Set Up Environment Variables
 
 Create a .env file in the root directory:
 
 text
+
 MONGO_URI=your_mongo_connection_string
+
 JWT_SECRET=matchkin_secret_123
+
 EMAIL_USER=your_gmail@gmail.com
+
 EMAIL_PASS=your_gmail_app_password
+
 4. Start the Backend
 
 bash
+
 npm start
+
 Backend runs at http://localhost:5000
 
 5. Run the Frontend
