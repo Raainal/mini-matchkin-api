@@ -2,7 +2,7 @@
 🧩 Mini Matchkin API & Frontend
 A full-stack matching engine for clients and consultants, featuring OTP-based login, JWT authentication, and a scoring-based matching algorithm.
 
-🌐 Live Frontend Demo  |  🟢 Live Backend API
+🌐 Live Frontend Demo https://mini-matchkin-api.netlify.app/  |  🟢 Live Backend API
 
 </div>
 
