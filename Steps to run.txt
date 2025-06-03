@@ -69,8 +69,8 @@ If you want to log in as a different user (for example, to create both a client 
 
 ```json
 {
-  "fullName": "Alice Consultant",
-  "skills": ["Node.js", "MongoDB", "API Design"],
+  "fullName": "Amal Consultant",
+  "skills": ["Node.js", "API Design"],
   "domains": ["E-commerce", "Healthcare"],
   "experience": 5,
   "availability": true
